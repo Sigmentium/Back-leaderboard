@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
         const Top = GetBase('TsuEFa');
 
         res.writeHead(200, {'Content-Type':'application/json'});
-        res.end();
+        res.end(Top);
         return;
     }
 });
