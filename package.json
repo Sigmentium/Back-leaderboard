@@ -1,0 +1,9 @@
+{
+  "name": "back",
+  "author": "Sigmentium",
+  "version": "1.0.0",
+  "main": "Main.js",
+  "scripts": {
+    "start": "node Main.js"
+  }
+}
