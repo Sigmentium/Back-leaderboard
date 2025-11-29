@@ -1,6 +1,6 @@
 const http = require('http');
 
-const port = 2000 || process.env.PORT;
+const port = process.env.PORT || 2000;
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://sigmentium.github.io');
