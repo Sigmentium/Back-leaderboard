@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
 
         setTimeout(() => {
             const List = Object.entries(Data).map(([id, player]) => {
-                const WinsArray = player.Victories[game];
+                const WinsArray = player?.Victories?.[game] ?? [];
                 const TotalWins = WinsArray.reduce((a, b) => a + b, 0);
 
                 return {
