@@ -16,18 +16,20 @@ const server = http.createServer((req, res) => {
                 Data = data;
             });
 
-        const List = Object.entries(Data).map(([id, player]) => {
-            const WinsArray = player.Victories[game];
-            const TotalWins = WinsArray.reduce((a, b) => a + b, 0);
+        setTimeout(() => {
+            const List = Object.entries(Data).map(([id, player]) => {
+                const WinsArray = player.Victories[game];
+                const TotalWins = WinsArray.reduce((a, b) => a + b, 0);
 
-            return {
-                id,
-                Name: player.Name,
-                Victories: TotalWins
-            };
-        });
+                return {
+                    id,
+                    Name: player.Name,
+                    Victories: TotalWins
+                };
+            });
 
-        return List.slice(0, 100);
+            return List.slice(0, 100);
+        }, 5000);
     }
 
     if (req.method === 'OPTIONS') {
