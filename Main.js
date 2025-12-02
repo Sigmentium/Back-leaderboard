@@ -2,7 +2,7 @@ const http = require('http');
 
 const port = process.env.PORT || 2000;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://sigmentium.github.io');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
     }
 
     if (req.method === 'GET' && req.url === '/YouSkuff/TsuEFa') {
-        const Top = GetBase('TsuEFa');
+        const Top = await GetBase('TsuEFa');
 
         res.writeHead(200, {'Content-Type':'application/json'});
         res.end(JSON.stringify(Top));
