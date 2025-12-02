@@ -8,12 +8,6 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     async function GetBase(game) {
-        // fetch(`https://sigmentium-777-default-rtdb.europe-west1.firebasedatabase.app/Data.json`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         Data = data;
-        //     });
-
         const response = await fetch('https://sigmentium-777-default-rtdb.europe-west1.firebasedatabase.app/Data.json');
         const data = await response.json();
 
@@ -43,7 +37,7 @@ const server = http.createServer((req, res) => {
         const Top = GetBase('TsuEFa');
 
         res.writeHead(200, {'Content-Type':'application/json'});
-        res.end(Top);
+        res.end(JSON.stringify(Top));
         return;
     }
 });
