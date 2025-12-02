@@ -7,29 +7,30 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    function GetBase(game) {
-        let Data;
+    async function GetBase(game) {
+        // fetch(`https://sigmentium-777-default-rtdb.europe-west1.firebasedatabase.app/Data.json`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         Data = data;
+        //     });
 
-        fetch(`https://sigmentium-777-default-rtdb.europe-west1.firebasedatabase.app/Data.json`)
-            .then(response => response.json())
-            .then(data => {
-                Data = data;
-            });
+        const response = await fetch('https://sigmentium-777-default-rtdb.europe-west1.firebasedatabase.app/Data.json');
+        const data = await response.json();
 
-        setTimeout(() => {
-            const List = Object.entries(Data).map(([id, player]) => {
-                const WinsArray = player?.Victories?.[game] ?? [];
-                const TotalWins = WinsArray.reduce((a, b) => a + b, 0);
+        if (!data) return [];
 
-                return {
-                    id,
-                    Name: player.Name,
-                    Victories: TotalWins
-                };
-            });
+        const List = Object.entries(data).map(([id, player]) => {
+            const WinsArray = player?.Victories?.[game] ?? [];
+            const TotalWins = WinsArray.reduce((a, b) => a + b, 0);
 
-            return List.slice(0, 100);
-        }, 5000);
+            return {
+                id,
+                Name: player.Name,
+                Victories: TotalWins
+            };
+        });
+
+        return List.slice(0, 100);
     }
 
     if (req.method === 'OPTIONS') {
