@@ -24,6 +24,8 @@ const server = http.createServer(async (req, res) => {
             };
         });
 
+        List.sort((a, b) => b.Victories - a.Victories);
+
         return List.slice(0, 100);
     }
 
